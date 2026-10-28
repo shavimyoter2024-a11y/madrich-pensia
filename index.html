@@ -1,0 +1,683 @@
+<!doctype html>
+<!--
+  מדריך הפנסיה בפורמט סטוריז. נשלח במאני-צ'אט למי שמגיב "פנסיה" על הפוסט באינסטגרם.
+  כל <section class="story"> הוא מסך. מעבר: כפתורים, נגיעה בצדדים, החלקה, חיצים במקלדת.
+  המסך הראשון הוא אנימציית פתיחה שרצה לבד (data-auto). שאר המסכים לא מתקדמים לבד.
+  מקורות: כל זכות, רשות שוק ההון, משרד האוצר (בחלון המקורות במסך האחרון).
+-->
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1f33" />
+  <title>המדריך לפנסיה שלכם | שווים יותר</title>
+  <meta name="description" content="3 דקות, 14 מסכים: מה זו פנסיה, כמה זה שווה לכם, ומה לבדוק כבר השבוע." />
+  <meta name="robots" content="noindex" />
+  <link rel="canonical" href="https://shavimyoter2024-a11y.github.io/madrich-pensia/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="he_IL" />
+  <meta property="og:title" content="המדריך לפנסיה שלכם" />
+  <meta property="og:description" content="3 דקות. בלי לנחש." />
+  <meta property="og:image" content="https://shavimyoter2024-a11y.github.io/madrich-pensia/assets/logo.jpg" />
+  <meta property="og:url" content="https://shavimyoter2024-a11y.github.io/madrich-pensia/" />
+  <link rel="icon" href="assets/logo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=Heebo:wght@700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ═════ ערכת ink (brand.md סעיף 2), בגרסת סטוריז ═════ */
+    :root {
+      --navy:#0b1f33; --navy-2:#153249; --paper:#fffdf9; --mist:#f3f7f8; --line:#dce6eb;
+      --orange:#ec5f28; --orange-2:#d5521f; --sky:#7fd4f2; --blue:#157ca8; --blue-ink:#0f6a94;
+      --chip:#dff3fb; --soft:#4e6577; --ok:#1f9d63; --bad:#c2410c;
+      --f-display:"Heebo","Assistant",system-ui,sans-serif;
+      --f-body:"Assistant","Heebo",system-ui,"Segoe UI",sans-serif;
+      --ease:cubic-bezier(.22,1,.36,1);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; background: #06121f; color: var(--navy);
+      font: 400 18px/1.55 var(--f-body); -webkit-font-smoothing: antialiased;
+      overscroll-behavior: none;
+    }
+    h1, h2, h3, p { margin: 0; }
+    h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; }
+    p { text-wrap: pretty; }
+    a { color: inherit; }
+    button { font: inherit; color: inherit; }
+    :focus-visible { outline: 3px solid var(--sky); outline-offset: 3px; }
+    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+    /* ═════ הבמה: מסך טלפון. בדסקטופ ממורכז במסגרת ═════ */
+    .stage {
+      position: relative; width: 100%; height: 100dvh; margin: 0 auto; overflow: hidden;
+      background: var(--navy); isolation: isolate;
+    }
+    @media (min-width: 560px) {
+      body { display: grid; place-items: center; min-height: 100dvh; }
+      .stage { width: 420px; height: min(860px, calc(100dvh - 48px)); border-radius: 28px; box-shadow: 0 30px 80px -30px rgba(0,0,0,.7); }
+    }
+
+    /* פסי התקדמות */
+    .bars { position: absolute; z-index: 20; top: 0; inset-inline: 0; display: flex; gap: 4px; padding: calc(10px + env(safe-area-inset-top)) 12px 0; direction: rtl; }
+    .bars span { flex: 1; height: 3px; border-radius: 3px; background: rgba(255,255,255,.3); overflow: hidden; }
+    .bars span i { display: block; height: 100%; width: 0; background: #fff; }
+    .bars span.done i { width: 100%; }
+    .light .bars span { background: rgba(11,31,51,.16); }
+    .light .bars span i { background: var(--navy); }
+
+    .topline { position: absolute; z-index: 20; top: calc(22px + env(safe-area-inset-top)); inset-inline: 12px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .brand { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 14px; color: #fff; }
+    .brand img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; background: #fff; }
+    .light .brand { color: var(--navy); }
+    .count { font-size: 13px; font-weight: 700; color: rgba(255,255,255,.75); font-variant-numeric: tabular-nums; }
+    .light .count { color: var(--soft); }
+
+    /* ═════ מסך ═════ */
+    .story {
+      position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center;
+      padding: calc(76px + env(safe-area-inset-top)) 24px calc(104px + env(safe-area-inset-bottom));
+      text-align: center; visibility: hidden; opacity: 0; transition: opacity .35s var(--ease), visibility 0s .35s;
+      overflow-y: auto; -webkit-overflow-scrolling: touch;
+    }
+    .story.active { visibility: visible; opacity: 1; transition: opacity .35s var(--ease); }
+    .story > * { max-width: 380px; margin-inline: auto; width: 100%; }
+    .bg-navy  { background: radial-gradient(120% 70% at 80% 0%, #1d4467 0%, transparent 60%), var(--navy); color: #fff; }
+    .bg-orange{ background: radial-gradient(120% 70% at 20% 0%, #ff8a55 0%, transparent 60%), var(--orange); color: #fff; }
+    .bg-paper { background: var(--paper); color: var(--navy); }
+    .bg-mist  { background: var(--mist); color: var(--navy); }
+    .bg-blue  { background: radial-gradient(120% 70% at 80% 100%, #2aa1d3 0%, transparent 60%), var(--blue-ink); color: #fff; }
+
+    .kicker { display: inline-block; align-self: center; width: auto; padding: 6px 14px; border-radius: 999px; font-size: 14px; font-weight: 800; background: rgba(255,255,255,.14); }
+    .bg-paper .kicker, .bg-mist .kicker { background: var(--chip); color: var(--blue-ink); }
+    .story h2 { margin-top: 16px; font-size: clamp(30px, 8.6vw, 40px); font-weight: 900; line-height: 1.12; letter-spacing: -.01em; }
+    .story h2 .hl { color: var(--orange); }
+    .bg-orange h2 .hl, .bg-blue h2 .hl, .bg-navy h2 .hl { color: var(--sky); }
+    .story .lead { margin-top: 14px; font-size: 19px; line-height: 1.5; opacity: .88; }
+    .story .small { margin-top: 12px; font-size: 15px; opacity: .75; }
+    .big { display: block; margin-top: 12px; font: 900 clamp(64px, 20vw, 96px)/1 var(--f-display); letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+
+    /* כפתורים בתוך המסך */
+    .opt {
+      display: flex; align-items: center; justify-content: center; width: 100%; min-height: 56px; margin-top: 10px; padding: 8px 16px;
+      border: 2px solid currentColor; border-radius: 14px; background: transparent; font-weight: 800; font-size: 19px; cursor: pointer;
+      transition: background .2s, transform .15s var(--ease), border-color .2s, color .2s;
+    }
+    .opt:active { transform: scale(.97); }
+    .bg-paper .opt, .bg-mist .opt { border-color: var(--line); background: #fff; color: var(--navy); }
+    .opt.right { background: var(--ok) !important; border-color: var(--ok) !important; color: #fff !important; }
+    .opt.wrong { opacity: .45; }
+    .opt[disabled] { cursor: default; }
+    .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+    .pair .opt { margin-top: 0; }
+    .opt.picked { background: var(--navy); border-color: var(--navy); color: #fff; }
+    .bg-navy .opt.picked, .bg-blue .opt.picked, .bg-orange .opt.picked { background: #fff; border-color: #fff; color: var(--navy); }
+
+    .cta { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; min-height: 56px; margin-top: 20px; padding: 0 24px; border: 0; border-radius: 14px; background: var(--orange); color: #fff; font: 800 19px/1.2 var(--f-body); text-decoration: none; cursor: pointer; }
+    .bg-orange .cta { background: #fff; color: var(--orange-2); }
+    .cta.wa { background: #1fa855; color: #fff; }
+
+    /* תשובה שנחשפת */
+    .reveal-box { margin-top: 18px; padding: 18px 16px; border-radius: 18px; background: rgba(255,255,255,.12); text-align: center; }
+    .bg-paper .reveal-box, .bg-mist .reveal-box { background: #fff; border: 1px solid var(--line); }
+    .reveal-box[hidden] { display: none; }
+    .reveal-box.show { animation: pop .45s var(--ease) both; }
+    .reveal-box b { font-weight: 800; }
+    .reveal-box .do { display: block; margin-top: 10px; padding: 12px; border-radius: 12px; background: var(--chip); color: var(--blue-ink); font-size: 16px; }
+    .reveal-box .do a { font-weight: 800; }
+    .verdict { display: block; font: 900 22px/1.2 var(--f-display); margin-bottom: 6px; }
+
+    .split { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+    .split div { border-radius: 12px; padding: 10px 4px; background: rgba(11,31,51,.06); }
+    .bg-navy .split div { background: rgba(255,255,255,.08); }
+    .split strong { display: block; font: 900 22px/1.1 var(--f-display); }
+    .split small { display: block; margin-top: 2px; font-size: 13px; opacity: .75; }
+
+    /* שלושה דברים בקופה */
+    .three { display: grid; gap: 10px; margin-top: 22px; text-align: start; }
+    .three div { display: flex; gap: 14px; align-items: center; padding: 14px; border-radius: 16px; background: #fff; border: 1px solid var(--line); }
+    .three .ic { flex: none; width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; background: var(--chip); color: var(--blue-ink); font: 900 20px/1 var(--f-display); }
+    .three b { display: block; font-weight: 800; font-size: 18px; }
+    .three span span { display: block; font-size: 15px; color: var(--soft); }
+    .active .three div { animation: rise .6s var(--ease) both; }
+    .active .three div:nth-child(2) { animation-delay: .15s; }
+    .active .three div:nth-child(3) { animation-delay: .3s; }
+
+    /* ═════ מחשבון ═════ */
+    .calc { margin-top: 18px; text-align: start; }
+    .calc label { display: flex; justify-content: space-between; align-items: baseline; font-weight: 700; font-size: 15px; margin-top: 14px; }
+    .calc label output { font: 900 20px/1 var(--f-display); font-variant-numeric: tabular-nums; }
+    .calc input[type=range] { width: 100%; height: 36px; margin: 4px 0 0; accent-color: var(--orange); direction: rtl; }
+    .result { margin-top: 14px; padding: 16px; border-radius: 18px; background: var(--navy); color: #fff; text-align: center; }
+    .result small { display: block; font-size: 14px; opacity: .78; }
+    .result strong { display: block; margin-top: 4px; font: 900 clamp(36px, 11vw, 48px)/1 var(--f-display); color: var(--sky); font-variant-numeric: tabular-nums; }
+    .result.zero strong { color: #9be7c4; }
+    .calc .note { margin-top: 8px; font-size: 12.5px; color: var(--soft); text-align: center; }
+
+    /* טבלה קטנה */
+    .compare { width: 100%; margin-top: 18px; border-collapse: separate; border-spacing: 0; font-size: 15px; background: #fff; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); }
+    .compare th, .compare td { padding: 12px 8px; border-bottom: 1px solid var(--line); }
+    .compare th { font-weight: 800; font-size: 14px; color: var(--soft); }
+    .compare td { font: 800 18px/1.2 var(--f-display); font-variant-numeric: tabular-nums; }
+    .compare td:first-child { text-align: start; font: 700 15px/1.3 var(--f-body); }
+    .compare tr:last-child td { border-bottom: 0; }
+    .compare .best td { background: #eaf8f1; }
+
+    /* צ'קליסט */
+    .check { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 8px; text-align: start; }
+    .check label { display: flex; gap: 12px; align-items: center; min-height: 56px; padding: 10px 14px; border-radius: 14px; background: #fff; border: 1px solid var(--line); cursor: pointer; transition: background .2s; }
+    .check input { flex: none; width: 24px; height: 24px; margin: 0; accent-color: var(--ok); }
+    .check b { display: block; font-weight: 800; font-size: 16px; }
+    .check small { display: block; font-size: 14px; color: var(--soft); }
+    .check label:has(input:checked) { background: #eaf8f1; border-color: #b9e6cf; }
+    .check-count { margin-top: 12px; font-weight: 800; color: var(--ok); }
+
+    /* ═════ ניווט תחתון ═════ */
+    .nav {
+      position: absolute; z-index: 20; inset-inline: 0; bottom: 0; display: flex; gap: 10px; align-items: center;
+      padding: 12px 16px calc(14px + env(safe-area-inset-bottom));
+    }
+    .nav button { min-height: 52px; border: 0; border-radius: 14px; font-weight: 800; font-size: 18px; cursor: pointer; }
+    .nav .next { flex: 1; background: #fff; color: var(--navy); }
+    .nav .prev { width: 52px; background: rgba(255,255,255,.16); color: #fff; font-size: 22px; }
+    .light .nav .next { background: var(--navy); color: #fff; }
+    .light .nav .prev { background: rgba(11,31,51,.08); color: var(--navy); }
+    .nav .prev[disabled] { opacity: .35; cursor: default; }
+    .nav.hidden { display: none; }
+    .nav .next.pulse { animation: pulse 1.6s ease-in-out infinite; }
+
+    /* ═════ אנימציית פתיחה ═════ */
+    .intro { padding-bottom: calc(60px + env(safe-area-inset-bottom)); }
+    .scene { position: relative; height: 340px; width: 100%; }
+    .beat { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; }
+    .beat h2 { margin-top: 0; }
+    .playing .b1 { animation: beat 3s var(--ease) 0s both; }
+    .playing .b2 { animation: beat 3.4s var(--ease) 3s both; }
+    .playing .b3 { animation: beat 3.4s var(--ease) 6.4s both; }
+    .playing .b4 { animation: beatIn .8s var(--ease) 9.8s both; }
+    .ended .b4 { opacity: 1; }
+
+    /* מטבעות שנערמים לאורך 40 שנה */
+    .grow { display: flex; align-items: flex-end; justify-content: center; gap: 6px; height: 150px; margin-top: 18px; }
+    .grow i { width: 14px; border-radius: 4px 4px 2px 2px; background: linear-gradient(180deg, var(--sky), #2aa1d3); height: 0; }
+    .playing .b2 .grow i { animation: bar 2.2s var(--ease) both; }
+    .grow-label { display: flex; justify-content: space-between; width: 100%; max-width: 300px; margin: 8px auto 0; font-size: 13px; opacity: .7; direction: rtl; }
+
+    .eye { width: 92px; height: 92px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.1); font-size: 44px; }
+    .playing .b3 .eye { animation: blink 3.4s ease 6.4s both; }
+
+    .story > .vid-ui { position: absolute; inset-inline: 16px; width: auto; max-width: none; margin: 0; bottom: calc(18px + env(safe-area-inset-bottom)); display: flex; align-items: center; gap: 12px; }
+    .vid-ui .track { flex: 1; height: 4px; border-radius: 4px; background: rgba(255,255,255,.22); overflow: hidden; }
+    .vid-ui .track i { display: block; height: 100%; width: 0; background: var(--orange); }
+    .playing .vid-ui .track i { animation: track 10.6s linear both; }
+    .ended .vid-ui .track i { width: 100%; }
+    .vid-ui button { width: 44px; height: 44px; border: 0; border-radius: 50%; background: rgba(255,255,255,.16); color: #fff; font-size: 18px; cursor: pointer; }
+
+    @keyframes beat { 0% { opacity: 0; transform: translateY(24px) scale(.98); } 14% { opacity: 1; transform: none; } 84% { opacity: 1; transform: none; } 100% { opacity: 0; transform: translateY(-16px); } }
+    @keyframes beatIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+    @keyframes bar { from { height: 0; } to { height: var(--h); } }
+    @keyframes blink { 0%, 40%, 48%, 100% { transform: scaleY(1); } 44% { transform: scaleY(.1); } }
+    @keyframes track { to { width: 100%; } }
+    @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+    @keyframes pop { from { opacity: 0; transform: translateY(10px) scale(.97); } to { opacity: 1; transform: none; } }
+    @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(236,95,40,.0); } 50% { box-shadow: 0 0 0 6px rgba(236,95,40,.35); } }
+    .active .anim { animation: rise .6s var(--ease) both; }
+    .active .anim.d1 { animation-delay: .12s; } .active .anim.d2 { animation-delay: .24s; } .active .anim.d3 { animation-delay: .36s; }
+
+    /* חלון מקורות */
+    dialog { width: min(92vw, 400px); max-height: 80dvh; border: 0; border-radius: 20px; padding: 24px 20px; color: var(--navy); background: var(--paper); text-align: start; }
+    dialog::backdrop { background: rgba(6,18,31,.6); }
+    dialog h3 { font-size: 20px; font-weight: 900; }
+    dialog p { margin-top: 8px; font-size: 15px; color: var(--soft); }
+    dialog ul { margin: 12px 0 0; padding: 0; list-style: none; font-size: 15px; }
+    dialog li a { display: flex; align-items: center; min-height: 40px; color: var(--blue-ink); font-weight: 700; }
+    dialog .close { margin-top: 16px; width: 100%; min-height: 48px; border: 0; border-radius: 12px; background: var(--navy); color: #fff; font-weight: 800; cursor: pointer; }
+    .legal { margin-top: 18px; font-size: 13px; opacity: .75; }
+    .legal a { display: inline-flex; align-items: center; min-height: 40px; margin: 0 6px; }
+    .linkbtn { background: none; border: 0; padding: 0; min-height: 40px; text-decoration: underline; cursor: pointer; font-size: 13px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; transition-duration: .2s !important; }
+      .playing .b1, .playing .b2, .playing .b3 { animation: none !important; opacity: 0; }
+      .playing .b4 { opacity: 1; }
+      .grow i { height: var(--h); }
+    }
+    @media (max-height: 680px) {
+      .story h2 { font-size: 28px; }
+      .scene { height: 300px; }
+      .grow { height: 110px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="stage" id="stage" aria-roledescription="סטוריז" aria-label="המדריך לפנסיה שלכם">
+    <div class="bars" id="bars" aria-hidden="true"></div>
+    <div class="topline">
+      <span class="brand"><img src="assets/logo.jpg" alt="" width="30" height="30" />שווים יותר · מדריך פנסיה</span>
+      <span class="count" id="count" aria-live="polite"></span>
+    </div>
+
+    <!-- 1 · אנימציית פתיחה (רצה לבד, ~11 שניות) -->
+    <section class="story bg-navy intro" data-auto="10600" data-name="intro">
+      <div class="scene" aria-live="polite">
+        <div class="beat b1">
+          <span class="kicker">שאלה קטנה</span>
+          <h2>יש לכם חשבון<br>שאתם <span class="hl">אף פעם</span><br>לא בודקים.</h2>
+        </div>
+        <div class="beat b2">
+          <h2>והוא גדל כל חודש.<br><span class="hl">ארבעים שנה.</span></h2>
+          <div class="grow" aria-hidden="true">
+            <i style="--h:8%"></i><i style="--h:13%"></i><i style="--h:19%"></i><i style="--h:26%"></i><i style="--h:34%"></i><i style="--h:43%"></i><i style="--h:54%"></i><i style="--h:66%"></i><i style="--h:80%"></i><i style="--h:100%"></i>
+          </div>
+          <div class="grow-label" aria-hidden="true"><span>היום</span><span>הפרישה</span></div>
+        </div>
+        <div class="beat b3">
+          <div class="eye" aria-hidden="true">👀</div>
+          <h2 style="margin-top:18px">זה הכסף הכי גדול<br>שיהיה <span class="hl">לכם.</span></h2>
+        </div>
+        <div class="beat b4">
+          <span class="kicker">3 דקות · 14 מסכים</span>
+          <h2>הפנסיה שלכם.<br><span class="hl">בלי לנחש.</span></h2>
+          <button class="cta" type="button" data-go="next" data-cta="intro-start">בואו נתחיל ←</button>
+        </div>
+      </div>
+      <div class="vid-ui">
+        <button type="button" id="replay" aria-label="לנגן שוב">↻</button>
+        <div class="track" aria-hidden="true"><i></i></div>
+      </div>
+    </section>
+
+    <!-- 2 · ניחוש -->
+    <section class="story bg-orange" data-name="quiz">
+      <span class="kicker anim">נחשו</span>
+      <h2 class="anim d1">כמה מהמשכורת שלכם נכנס לפנסיה כל חודש?</h2>
+      <div class="anim d2" data-quiz>
+        <button class="opt" type="button" data-answer="5%">5%</button>
+        <button class="opt" type="button" data-answer="12%">12%</button>
+        <button class="opt" type="button" data-answer="18.5%" data-correct>18.5%</button>
+      </div>
+      <div class="reveal-box" hidden data-quiz-reveal>
+        <span class="verdict" data-verdict></span>
+        <p>18.5% מהשכר, לפי חוק פנסיה חובה. רובו בכלל לא מכם.</p>
+        <div class="split">
+          <div><strong>6%</strong><small>מכם</small></div>
+          <div><strong>6.5%</strong><small>מהמעסיק</small></div>
+          <div><strong>6%</strong><small>פיצויים</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 · שלושה דברים בקופה -->
+    <section class="story bg-paper light" data-name="what">
+      <span class="kicker anim">מה יש בקרן</span>
+      <h2 class="anim d1">זה לא רק חיסכון.<br>זה <span class="hl">שלושה</span> דברים.</h2>
+      <div class="three">
+        <div><span class="ic" aria-hidden="true">₪</span><span><b>חיסכון לפרישה</b><span>הופך לקצבה חודשית לכל החיים.</span></span></div>
+        <div><span class="ic" aria-hidden="true">+</span><span><b>ביטוח נכות</b><span>לא יכולים לעבוד? הקרן משלמת לכם.</span></span></div>
+        <div><span class="ic" aria-hidden="true">♡</span><span><b>ביטוח שארים</b><span>חלילה מוות, המשפחה מקבלת קצבה.</span></span></div>
+      </div>
+    </section>
+
+    <!-- 4 · מחשבון -->
+    <section class="story bg-mist light" data-name="calc">
+      <span class="kicker anim">המסך הכי חשוב</span>
+      <h2 class="anim d1" style="font-size:clamp(26px,7.4vw,34px)">אחוז קטן. <span class="hl">הרבה כסף.</span></h2>
+      <p class="lead anim d2" style="font-size:17px">דמי ניהול נגבים כל שנה מכל מה שנצבר. הזיזו ותראו.</p>
+      <div class="calc anim d3">
+        <label for="salary">משכורת ברוטו <output id="salaryOut"></output></label>
+        <input type="range" id="salary" min="6000" max="30000" step="1000" value="12000" />
+        <label for="fee">דמי ניהול מהצבירה <output id="feeOut"></output></label>
+        <input type="range" id="fee" min="0.1" max="0.5" step="0.01" value="0.4" />
+        <div class="result" id="result" aria-live="polite">
+          <small>תשלמו יותר מקרן ברירת מחדל (0.22%), עד הפרישה</small>
+          <strong id="diff"></strong>
+        </div>
+        <p class="note">דוגמה בלבד: 40 שנות הפקדה של 18.5% מהשכר, תשואה של 4% בשנה.</p>
+      </div>
+    </section>
+
+    <!-- 5 · כמה משלמים -->
+    <section class="story bg-paper light" data-name="fees">
+      <span class="kicker anim">דמי ניהול</span>
+      <h2 class="anim d1">כמה <span class="hl">מותר</span> לגבות מכם?</h2>
+      <table class="compare anim d2">
+        <thead><tr><th scope="col"></th><th scope="col">מההפקדה</th><th scope="col">מהצבירה</th></tr></thead>
+        <tbody>
+          <tr><td>המקסימום בחוק</td><td>6%</td><td>0.5%</td></tr>
+          <tr class="best"><td>קרנות ברירת המחדל</td><td>עד 1%</td><td>עד 0.22%</td></tr>
+        </tbody>
+      </table>
+      <p class="lead anim d3" style="font-size:17px">משלמים יותר? מבקשים הורדה מהקרן. לפעמים מספיקה שיחה אחת.</p>
+      <a class="cta anim d3" href="https://pensyanet.cma.gov.il/" target="_blank" rel="noopener" data-cta="pensyanet">משווים בפנסיה-נט ←</a>
+    </section>
+
+    <!-- 6 · קופות שנשכחו -->
+    <section class="story bg-blue" data-name="lost">
+      <span class="kicker anim">החלפתם עבודה פעם?</span>
+      <h2 class="anim d1">יש לכם כנראה<br><span class="hl">קופה ששכחתם.</span></h2>
+      <p class="lead anim d2">כל מעסיק יכול לפתוח לכם קופה חדשה. בקופה ששכחתם, דמי הניהול בדרך כלל לא מוזלים.</p>
+      <a class="cta anim d3" href="https://itur.mof.gov.il/" target="_blank" rel="noopener" data-cta="har-hakesef" style="background:#fff;color:var(--blue-ink)">מחפשים בהר הכסף ←</a>
+      <p class="small anim d3">אתר של משרד האוצר. צריך רק תעודת זהות.</p>
+    </section>
+
+    <!-- 7 · מסלול -->
+    <section class="story bg-paper light" data-name="track">
+      <span class="kicker anim">מסלול ההשקעה</span>
+      <h2 class="anim d1">איפה הכסף <span class="hl">מושקע?</span></h2>
+      <p class="lead anim d2">ברירת המחדל: מסלול לפי גיל. כשאתם צעירים יותר מניות, ולקראת הפרישה פחות סיכון.</p>
+      <p class="lead anim d3">אין מסלול נכון לכולם. רק תדעו באיזה אתם. זה כתוב בדוח השנתי.</p>
+    </section>
+
+    <!-- 8 · אצלכם: עבודה חדשה -->
+    <section class="story bg-navy" data-name="q-job">
+      <span class="kicker anim">אצלכם?</span>
+      <h2 class="anim d1">החלפתם עבודה או הפסקתם לעבוד בשנתיים האחרונות?</h2>
+      <div class="pair anim d2" data-ask>
+        <button class="opt" type="button" data-pick="yes">כן</button>
+        <button class="opt" type="button" data-pick="no">לא</button>
+      </div>
+      <div class="reveal-box" hidden data-for="yes">
+        <p><b>ביום הראשון בעבודה חדשה</b> אמרו למעסיק לאיזו קרן להפקיד. אחרת הוא יכול לפתוח לכם קופה נוספת.</p>
+        <span class="do"><b>הפסקה בעבודה?</b> הביטוח נשמר רק 5 חודשים בלי הפקדה. לפני כן מבקשים מהקרן "הסדר ריסק".</span>
+      </div>
+      <div class="reveal-box" hidden data-for="no">
+        <p><b>מעולה.</b> רק תזכרו: אם תפסיקו לעבוד, הביטוח בקרן נשמר 5 חודשים בלי הפקדה. לפני כן מבקשים "הסדר ריסק".</p>
+      </div>
+    </section>
+
+    <!-- 9 · אצלכם: משפחה -->
+    <section class="story bg-paper light" data-name="q-family">
+      <span class="kicker anim">אצלכם?</span>
+      <h2 class="anim d1">יש לכם בן או בת זוג, או ילדים?</h2>
+      <div class="pair anim d2" data-ask>
+        <button class="opt" type="button" data-pick="yes">כן</button>
+        <button class="opt" type="button" data-pick="no">לא</button>
+      </div>
+      <div class="reveal-box" hidden data-for="no">
+        <p><b>אפשר לחסוך.</b> מותר לבקש מהקרן ויתור על ביטוח השארים, וכך יותר כסף נשאר בחיסכון.</p>
+        <span class="do"><b>שימו לב:</b> כשמתחתנים או כשנולד ילד, מחזירים את הביטוח מיד.</span>
+      </div>
+      <div class="reveal-box" hidden data-for="yes">
+        <p><b>ביטוח השארים חשוב לכם.</b> בדקו שהוא פעיל בקרן, ושהמשפחה רשומה בה כמו שצריך.</p>
+      </div>
+    </section>
+
+    <!-- 10 · אצלכם: מילואים -->
+    <section class="story bg-orange" data-name="q-miluim">
+      <span class="kicker anim">אצלכם?</span>
+      <h2 class="anim d1">הייתם במילואים השנה?</h2>
+      <div class="pair anim d2" data-ask>
+        <button class="opt" type="button" data-pick="yes">כן</button>
+        <button class="opt" type="button" data-pick="no">לא</button>
+      </div>
+      <div class="reveal-box" hidden data-for="yes">
+        <p><b>שכירים:</b> המעסיק חייב להמשיך להפקיד לפנסיה גם בזמן המילואים. פתחו את התלוש של החודש הזה ובדקו.</p>
+        <span class="do"><b>עצמאים:</b> אף אחד לא מפקיד בשבילכם. תמשיכו את ההפקדות בעצמכם.</span>
+      </div>
+      <div class="reveal-box" hidden data-for="no">
+        <p><b>טוב לדעת לפעם הבאה:</b> בזמן מילואים המעסיק חייב להמשיך להפקיד לפנסיה. עצמאים ממשיכים להפקיד בעצמם.</p>
+      </div>
+    </section>
+
+    <!-- 11 · אצלכם: עצמאים -->
+    <section class="story bg-paper light" data-name="q-self">
+      <span class="kicker anim">אצלכם?</span>
+      <h2 class="anim d1">אתם עצמאים?</h2>
+      <div class="pair anim d2" data-ask>
+        <button class="opt" type="button" data-pick="yes">כן</button>
+        <button class="opt" type="button" data-pick="no">לא</button>
+      </div>
+      <div class="reveal-box" hidden data-for="yes">
+        <span class="big" style="font-size:64px;color:var(--orange)">35%</span>
+        <p>זה הזיכוי במס שמקבלים על חלק מההפקדה לפנסיה. על עוד חלק, ההכנסה החייבת במס יורדת.</p>
+        <span class="do">בדקו עם רואה החשבון שאתם מנצלים את זה עד הסוף.</span>
+      </div>
+      <div class="reveal-box" hidden data-for="no">
+        <p><b>שכירים:</b> בעבודה חדשה בלי קרן קיימת, המעסיק חייב להתחיל להפקיד אחרי 6 חודשים. עם קרן קיימת, מוקדם יותר.</p>
+      </div>
+    </section>
+
+    <!-- 12 · קצבה וגיל פרישה -->
+    <section class="story bg-navy" data-name="pension">
+      <span class="kicker anim">בסוף הדרך</span>
+      <h2 class="anim d1">איך הכסף הופך<br>ל<span class="hl">משכורת?</span></h2>
+      <div class="reveal-box show anim d2" style="font-size:20px">
+        <b>1,000,000 ₪ ÷ 200 = 5,000 ₪ בחודש</b>
+        <p class="small" style="opacity:.8">את הצבירה מחלקים ב"מקדם המרה". מקדם נמוך יותר = קצבה גבוהה יותר.</p>
+      </div>
+      <p class="lead anim d3">גיל הפרישה: 67 לגברים. לנשים הוא עולה בהדרגה מ-62 ל-65, לפי שנת הלידה.</p>
+    </section>
+
+    <!-- 13 · צ'קליסט -->
+    <section class="story bg-mist light" data-name="checklist">
+      <span class="kicker anim">10 דקות</span>
+      <h2 class="anim d1" style="font-size:clamp(26px,7.4vw,34px)">הצ'קליסט שלכם</h2>
+      <ul class="check anim d2" id="check">
+        <li><label><input type="checkbox" data-k="1" /><span><b>מצאתי את כל הקופות</b><small>בהר הכסף</small></span></label></li>
+        <li><label><input type="checkbox" data-k="2" /><span><b>בדקתי את דמי הניהול</b><small>מול קרנות ברירת המחדל</small></span></label></li>
+        <li><label><input type="checkbox" data-k="3" /><span><b>אני יודע/ת באיזה מסלול אני</b><small>כתוב בדוח השנתי</small></span></label></li>
+        <li><label><input type="checkbox" data-k="4" /><span><b>הביטוחים מתאימים למשפחה שלי</b><small>שארים ונכות</small></span></label></li>
+        <li><label><input type="checkbox" data-k="5" /><span><b>יש הפרשה בתלוש</b><small>גם בחודש המילואים</small></span></label></li>
+      </ul>
+      <p class="check-count" id="checkCount" aria-live="polite"></p>
+    </section>
+
+    <!-- 14 · סיום -->
+    <section class="story bg-orange" data-name="end">
+      <span class="kicker anim">סיימתם 🎉</span>
+      <h2 class="anim d1">רוצים עוד<br>מדריכים כאלה?</h2>
+      <p class="lead anim d2">בקבוצה שלנו בוואטסאפ: מדריכים, זכויות והטבות לחברי הקהילה.</p>
+      <a class="cta wa anim d3" href="https://7yojte.s.gy/whatsapp-group" target="_blank" rel="noopener" data-cta="whatsapp-group">מצטרפים לקבוצת הוואטסאפ</a>
+      <p class="legal anim d3">
+        המידע כללי ואינו מהווה ייעוץ פנסיוני אישי.<br>
+        <button class="linkbtn" type="button" id="openSources">על מה זה מבוסס</button> ·
+        <a href="privacy.html">פרטיות</a> · <a href="accessibility.html">נגישות</a>
+      </p>
+    </section>
+
+    <!-- נגיעה בצדדים: שמאל = קדימה, ימין = אחורה (כיוון קריאה בעברית) -->
+    <nav class="nav" id="nav" aria-label="ניווט במדריך">
+      <button class="prev" type="button" id="prev" aria-label="המסך הקודם">→</button>
+      <button class="next" type="button" id="next">הבא ←</button>
+    </nav>
+  </main>
+
+  <dialog id="sources" aria-labelledby="srcTitle">
+    <h3 id="srcTitle">על מה המדריך מבוסס</h3>
+    <p>מקורות רשמיים, נבדקו באוקטובר 2026. הכללים משתנים מדי פעם, ובקרן שלכם עשויים להיות פרטים שונים.</p>
+    <ul>
+      <li><a href="https://www.kolzchut.org.il/he/%D7%97%D7%95%D7%91%D7%AA_%D7%91%D7%99%D7%98%D7%95%D7%97_%D7%A4%D7%A0%D7%A1%D7%99%D7%95%D7%A0%D7%99_%D7%9C%D7%A2%D7%95%D7%91%D7%93%D7%99%D7%9D" target="_blank" rel="noopener">כל זכות · חובת ביטוח פנסיוני</a></li>
+      <li><a href="https://www.kolzchut.org.il/he/%D7%A9%D7%9E%D7%99%D7%A8%D7%AA_%D7%96%D7%9B%D7%95%D7%99%D7%95%D7%AA_%D7%A4%D7%A0%D7%A1%D7%99%D7%95%D7%A0%D7%99%D7%95%D7%AA_%D7%91%D7%9E%D7%94%D7%9C%D7%9A_%D7%94%D7%A4%D7%A1%D7%A7%D7%AA_%D7%A2%D7%91%D7%95%D7%93%D7%94" target="_blank" rel="noopener">כל זכות · זכויות בהפסקת עבודה</a></li>
+      <li><a href="https://www.kolzchut.org.il/he/%D7%94%D7%A4%D7%A8%D7%A9%D7%95%D7%AA_%D7%9C%D7%91%D7%99%D7%98%D7%95%D7%97_%D7%A4%D7%A0%D7%A1%D7%99%D7%95%D7%A0%D7%99_%D7%95%D7%9C%D7%A7%D7%A8%D7%9F_%D7%94%D7%A9%D7%AA%D7%9C%D7%9E%D7%95%D7%AA_%D7%9C%D7%A2%D7%95%D7%91%D7%93%D7%99%D7%9D_%D7%91%D7%9E%D7%99%D7%9C%D7%95%D7%90%D7%99%D7%9D" target="_blank" rel="noopener">כל זכות · פנסיה בזמן מילואים</a></li>
+      <li><a href="https://www.kolzchut.org.il/he/%D7%95%D7%99%D7%AA%D7%95%D7%A8_%D7%A2%D7%9C_%D7%91%D7%99%D7%98%D7%95%D7%97_%D7%A9%D7%90%D7%99%D7%A8%D7%99%D7%9D_%D7%91%D7%9E%D7%A1%D7%92%D7%A8%D7%AA_%D7%94%D7%91%D7%99%D7%98%D7%95%D7%97_%D7%94%D7%A4%D7%A0%D7%A1%D7%99%D7%95%D7%A0%D7%99" target="_blank" rel="noopener">כל זכות · ויתור על ביטוח שארים</a></li>
+      <li><a href="https://www.kolzchut.org.il/he/%D7%94%D7%98%D7%91%D7%95%D7%AA_%D7%91%D7%9E%D7%A1_%D7%94%D7%9B%D7%A0%D7%A1%D7%94_%D7%91%D7%92%D7%99%D7%9F_%D7%94%D7%A4%D7%A7%D7%93%D7%95%D7%AA_%D7%A2%D7%A6%D7%9E%D7%90%D7%99%D7%95%D7%AA_%D7%9C%D7%91%D7%99%D7%98%D7%95%D7%97_%D7%A4%D7%A0%D7%A1%D7%99%D7%95%D7%A0%D7%99" target="_blank" rel="noopener">כל זכות · הטבות מס לעצמאים</a></li>
+      <li><a href="https://www.kolzchut.org.il/he/%D7%92%D7%99%D7%9C_%D7%A4%D7%A8%D7%99%D7%A9%D7%94_%D7%9E%D7%A2%D7%91%D7%95%D7%93%D7%94" target="_blank" rel="noopener">כל זכות · גיל פרישה</a></li>
+      <li><a href="https://pensyanet.cma.gov.il/" target="_blank" rel="noopener">רשות שוק ההון · פנסיה-נט</a></li>
+      <li><a href="https://itur.mof.gov.il/" target="_blank" rel="noopener">משרד האוצר · הר הכסף</a></li>
+    </ul>
+    <button class="close" type="button" id="closeSources">סגירה</button>
+  </dialog>
+
+  <script>
+  (function () {
+    "use strict";
+    var GA4_ID = "G-NR923MZ0BW"; // זרם "דפי נחיתה" בנכס 531302871 (wiring.md סעיף 8)
+    function track(name, params) { try { if (window.gtag) window.gtag("event", name, params || {}); } catch (e) {} }
+    var g = document.createElement("script");
+    g.async = true; g.src = "https://www.googletagmanager.com/gtag/js?id=" + GA4_ID;
+    document.head.appendChild(g);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag("js", new Date()); window.gtag("config", GA4_ID);
+
+    var stage = document.getElementById("stage");
+    var stories = Array.prototype.slice.call(document.querySelectorAll(".story"));
+    var barsEl = document.getElementById("bars");
+    var countEl = document.getElementById("count");
+    var nav = document.getElementById("nav");
+    var prevBtn = document.getElementById("prev");
+    var nextBtn = document.getElementById("next");
+    var reduced = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var cur = -1, autoTimer = null, maxSeen = 0;
+
+    stories.forEach(function () { var s = document.createElement("span"); s.appendChild(document.createElement("i")); barsEl.appendChild(s); });
+    var bars = barsEl.children;
+
+    function show(i) {
+      if (i < 0 || i >= stories.length || i === cur) return;
+      clearTimeout(autoTimer);
+      if (cur >= 0) stories[cur].classList.remove("active");
+      cur = i;
+      var s = stories[i];
+      // הפעלה מחדש של אנימציות הכניסה
+      s.classList.remove("active"); void s.offsetWidth; s.classList.add("active");
+      s.scrollTop = 0;
+      stage.classList.toggle("light", s.classList.contains("light"));
+      for (var b = 0; b < bars.length; b++) bars[b].classList.toggle("done", b <= i);
+      countEl.textContent = (i + 1) + "/" + stories.length;
+      prevBtn.disabled = i === 0;
+      var last = i === stories.length - 1;
+      nextBtn.textContent = last ? "לקרוא שוב מההתחלה" : "הבא ←";
+      nav.classList.toggle("hidden", !!s.getAttribute("data-auto"));
+      // סימון שאפשר להמשיך אחרי שענו על שאלה
+      nextBtn.classList.remove("pulse");
+      if (s.getAttribute("data-auto")) playIntro();
+      if (i > maxSeen) maxSeen = i;
+      track("story_view", { story: i + 1, name: s.getAttribute("data-name") });
+      if (last) track("guide_complete");
+      try { history.replaceState(null, "", "#" + (i + 1)); } catch (e) {}
+    }
+    function next() { if (cur === stories.length - 1) { show(0); return; } show(cur + 1); }
+    function prev() { show(cur - 1); }
+
+    // ═════ אנימציית הפתיחה ═════
+    var intro = stories[0];
+    function playIntro() {
+      intro.classList.remove("playing", "ended"); void intro.offsetWidth;
+      if (reduced) { intro.classList.add("ended"); return; }
+      intro.classList.add("playing");
+      autoTimer = setTimeout(function () { intro.classList.remove("playing"); intro.classList.add("ended"); track("intro_complete"); }, +intro.getAttribute("data-auto"));
+    }
+    document.getElementById("replay").addEventListener("click", function (e) { e.stopPropagation(); clearTimeout(autoTimer); playIntro(); track("intro_replay"); });
+    // נגיעה בפתיחה מדלגת לסוף האנימציה
+    intro.addEventListener("click", function (e) {
+      if (e.target.closest("button")) return;
+      if (intro.classList.contains("playing")) { clearTimeout(autoTimer); intro.classList.remove("playing"); intro.classList.add("ended"); track("intro_skip"); }
+    });
+
+    // ═════ ניווט ═════
+    nextBtn.addEventListener("click", next);
+    prevBtn.addEventListener("click", prev);
+    document.addEventListener("click", function (e) {
+      var go = e.target.closest("[data-go]");
+      if (go) { next(); }
+      var a = e.target.closest("[data-cta]");
+      if (a) track("cta_click", { location: a.getAttribute("data-cta") });
+    });
+    document.addEventListener("keydown", function (e) {
+      if (document.getElementById("sources").open) return;
+      if (e.key === "ArrowLeft") next();
+      if (e.key === "ArrowRight") prev();
+    });
+    // נגיעה בצדי המסך (לא על כפתורים/שדות): שליש ימני אחורה, השאר קדימה
+    stage.addEventListener("click", function (e) {
+      if (cur === 0) return;
+      if (e.target.closest("button, a, input, label, table, .reveal-box, .calc, dialog, .nav")) return;
+      var r = stage.getBoundingClientRect();
+      var x = e.clientX - r.left;
+      if (x > r.width * 0.68) prev(); else next();
+    });
+    // החלקה: שמאלה קדימה, ימינה אחורה
+    var sx = null, sy = null;
+    stage.addEventListener("touchstart", function (e) { if (e.target.closest("input[type=range]")) { sx = null; return; } sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+    stage.addEventListener("touchend", function (e) {
+      if (sx === null) return;
+      var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) { if (dx < 0) next(); else prev(); }
+      sx = null;
+    }, { passive: true });
+
+    // ═════ ניחוש ═════
+    var quiz = document.querySelector("[data-quiz]");
+    quiz.addEventListener("click", function (e) {
+      var b = e.target.closest(".opt"); if (!b || b.disabled) return;
+      var opts = quiz.querySelectorAll(".opt");
+      var correct = b.hasAttribute("data-correct");
+      opts.forEach(function (o) { o.disabled = true; if (o.hasAttribute("data-correct")) o.classList.add("right"); else if (o !== b) o.classList.add("wrong"); });
+      if (!correct) { b.classList.add("wrong"); }
+      var box = document.querySelector("[data-quiz-reveal]");
+      box.querySelector("[data-verdict]").textContent = correct ? "בול! 🎯" : "קרוב. התשובה: 18.5%";
+      box.hidden = false; box.classList.add("show");
+      nextBtn.classList.add("pulse");
+      track("quiz_answer", { answer: b.getAttribute("data-answer"), correct: correct });
+    });
+
+    // ═════ שאלות "אצלכם?" ═════
+    document.querySelectorAll("[data-ask]").forEach(function (ask) {
+      var story = ask.closest(".story");
+      ask.addEventListener("click", function (e) {
+        var b = e.target.closest(".opt"); if (!b) return;
+        var pick = b.getAttribute("data-pick");
+        ask.querySelectorAll(".opt").forEach(function (o) { o.classList.toggle("picked", o === b); });
+        story.querySelectorAll("[data-for]").forEach(function (box) {
+          var on = box.getAttribute("data-for") === pick;
+          box.hidden = !on; box.classList.toggle("show", on);
+        });
+        nextBtn.classList.add("pulse");
+        track("ask_answer", { question: story.getAttribute("data-name"), answer: pick });
+      });
+    });
+
+    // ═════ מחשבון ═════
+    var salary = document.getElementById("salary"), fee = document.getElementById("fee");
+    var nf = new Intl.NumberFormat("he-IL", { maximumFractionDigits: 0 });
+    function fv(monthly, annualNet) { var r = annualNet / 12, n = 480; return monthly * (Math.pow(1 + r, n) - 1) / r; }
+    var calcUsed = false;
+    function calc(e) {
+      var s = +salary.value, f = +fee.value;
+      var dep = s * 0.185;
+      var diff = fv(dep, 0.04 - 0.0022) - fv(dep, 0.04 - f / 100);
+      document.getElementById("salaryOut").textContent = nf.format(s) + " ₪";
+      document.getElementById("feeOut").textContent = f.toFixed(2) + "%";
+      var res = document.getElementById("result");
+      var out = document.getElementById("diff");
+      if (diff <= 500) { res.classList.add("zero"); res.querySelector("small").textContent = "אתם משלמים כמו קרן ברירת מחדל, או פחות"; out.textContent = "מצוין 👌"; }
+      else { res.classList.remove("zero"); res.querySelector("small").textContent = "תשלמו יותר מקרן ברירת מחדל (0.22%), עד הפרישה"; out.textContent = nf.format(Math.round(diff / 1000) * 1000) + " ₪"; }
+      if (e && !calcUsed) { calcUsed = true; track("calc_used"); }
+    }
+    salary.addEventListener("input", calc); fee.addEventListener("input", calc);
+    calc();
+
+    // ═════ צ'קליסט (נשמר רק בדפדפן הזה) ═════
+    var KEY = "madrich-pensia-check";
+    var boxes = document.querySelectorAll("#check input");
+    var saved = {};
+    try { saved = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) {}
+    function updCount() {
+      var n = 0; boxes.forEach(function (b) { if (b.checked) n++; });
+      document.getElementById("checkCount").textContent = n === boxes.length ? "כל הכבוד! בדקתם הכול ✓" : n + " מתוך " + boxes.length;
+    }
+    boxes.forEach(function (b) {
+      b.checked = !!saved[b.getAttribute("data-k")];
+      b.addEventListener("change", function () {
+        saved[b.getAttribute("data-k")] = b.checked;
+        try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
+        updCount();
+        if (b.checked) track("check_item", { item: +b.getAttribute("data-k") });
+      });
+    });
+    updCount();
+
+    // ═════ מקורות ═════
+    var dlg = document.getElementById("sources");
+    document.getElementById("openSources").addEventListener("click", function (e) { e.stopPropagation(); if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", ""); track("sources_open"); });
+    document.getElementById("closeSources").addEventListener("click", function () { if (dlg.close) dlg.close(); else dlg.removeAttribute("open"); });
+
+    // פתיחה: מספר מסך מהכתובת (#5), אחרת מההתחלה
+    var start = parseInt((location.hash || "").slice(1), 10);
+    show(start >= 1 && start <= stories.length ? start - 1 : 0);
+  })();
+  </script>
+</body>
+</html>
