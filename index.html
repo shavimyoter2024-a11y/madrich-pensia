@@ -485,8 +485,8 @@
       nav.classList.toggle("on-end", isEnd);
       nextBtn.classList.toggle("waiting", !!s.querySelector("[data-quiz]:not(.answered), [data-ask]:not(.answered)"));
       if (s.classList.contains("intro")) playIntro();
-      track("story_view", { story: i + 1, name: s.getAttribute("data-name") });
-      if (isEnd) track("guide_complete");
+      track("story_view", { story: i + 1, name: s.getAttribute("data-name"), page_id: "madrich-pensia", section_order: i + 1, section: s.getAttribute("data-name") });
+      if (isEnd) track("guide_complete", { page_id: "madrich-pensia" });
       try { history.replaceState(null, "", "#" + (i + 1)); } catch (e) {}
     }
     function next() { show(cur + 1); }
